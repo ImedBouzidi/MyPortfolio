@@ -1,0 +1,183 @@
+================================================================================
+         GOMRAH — UNIFIED REQUEST MANAGEMENT PLATFORM (URMP)
+                  Project Portfolio Description
+================================================================================
+
+Author    : Bouzidi Imed
+Supervised: Mr. Lazrag Hassen (Academic) | Ms. Selmi Hedia (Professional)
+Company   : INSY2S (Lille, France)
+Institution: ITEAM University (Tunisia)
+Year      : 2025–2026 | PFE (Projet de Fin d'Etudes)
+
+================================================================================
+                           BUSINESS OVERVIEW
+================================================================================
+
+PROBLEM STATEMENT
+-----------------
+INSY2S faced fragmented incoming requests across multiple channels (email,
+WhatsApp, web forms) each operating in isolation. Support agents spent
+excessive time on manual data entry, context switching between channels,
+and hand-typing information from attached documents (invoices, passports,
+complaints). This led to information dispersion, extended response times,
+human error, and GDPR compliance risks.
+
+SOLUTION
+--------
+A unified omnichannel platform that centralizes, automates, and intelligently
+processes customer requests from multiple channels into a single ticket system
+with AI-powered analysis, document OCR, and automated reply generation.
+
+KEY BUSINESS RESULTS
+--------------------
+  - Processing speed:  ~20 min (manual) → ~3 sec (automated) — 300x faster
+  - Automation rate:   78% of requests processed without human intervention
+  - OCR accuracy:      94.3% across diverse document types
+  - Cost reduction:    73% reduction in operational cost per request
+  - System uptime:     99.8% availability during testing
+
+CORE MODULES
+------------
+  1. Multi-Source Ingestion
+     - Email (IMAP with OAuth2), WhatsApp Business API, Web Forms, REST API
+     - All channels normalized into a unified ticket format
+
+  2. Document Management & OCR
+     - Multi-engine pipeline: Tesseract (FR/EN) + EasyOCR (Arabic)
+     - Preprocessing: deskewing, contrast, resolution normalization
+     - Structured extraction: invoices, passports (MRZ), complaints
+     - Confidence scoring with automated quality checks
+
+  3. AI Analysis & Response Engine
+     - BERT-based classification (5 categories: Complaint, Invoice, Quote,
+       Technical Support, HR) trained on 5,000+ historical tickets
+     - Confidence-scored routing: high confidence → auto-process; low → human
+     - Priority detection via urgency signals (keywords, deadlines, history)
+     - Named entity recognition (persons, orgs, phones, references)
+     - LLM-powered reply generation (RAG pipeline) — multilingual AR/FR/EN
+
+  4. Back-Office Management Interface
+     - Agent dashboard: ticket queue, filtering, side-by-side document view
+     - Data correction, internal notes, escalation workflows
+     - One-click response sending through original channel
+
+  5. Backup & Archiving
+     - AES-256 encrypted document storage (MinIO)
+     - Full-text search via Elasticsearch
+     - GDPR compliance: right to erasure, data portability
+
+================================================================================
+                          TECHNICAL STACK
+================================================================================
+
+BACKEND
+-------
+  - Java 17 / Spring Boot 3.2 / Spring Cloud 2023 (core services)
+  - Python / Flask (OCR service)
+  - Python / FastAPI (LLM service)
+  - Python / BERT + Transformers (AI classification)
+  - n8n (workflow orchestration — 5 production workflows)
+  - Apache Kafka (event-driven async messaging)
+  - Spring Cloud Gateway (API gateway, JWT validation, rate limiting)
+  - Eureka (service discovery)
+
+FRONTEND & MOBILE
+-----------------
+  - React 19 / TypeScript / Vite / Tailwind CSS (Admin Dashboard)
+  - i18next (multilingual support)
+  - Flutter (mobile apps — citizen submission, agent field feed)
+
+AI / ML STACK
+--------------
+  - Tesseract OCR + EasyOCR (multi-engine, multi-language)
+  - BERT (fine-tuned text classifier)
+  - Ollama / Gemma 2B (local LLM inference)
+  - Google Generative AI (cloud LLM fallback)
+  - Qdrant (vector database for RAG retrieval)
+  - Sentence Transformers (multilingual-e5-large embeddings)
+  - NLP: NER, sentiment analysis, profanity detection
+
+DATA & STORAGE
+--------------
+  - PostgreSQL 15 (primary relational DB)
+  - MinIO (S3-compatible object storage)
+  - Redis 6+ (caching layer)
+  - Elasticsearch (full-text search & indexing)
+  - Qdrant (vector store for semantic search)
+
+DEVOPS & INFRASTRUCTURE
+------------------------
+  - Docker 24.x / Docker Compose 2.x (containerization)
+  - Kubernetes 1.28 / Minikube (orchestration)
+  - Jenkins (CI/CD pipelines)
+  - Gitea (self-hosted source control)
+  - Prometheus + Grafana (monitoring & dashboards)
+  - Keycloak (IAM: OAuth2, JWT, OIDC, RBAC)
+
+TESTING
+-------
+  - JUnit 5 / pytest (unit tests — 82% coverage)
+  - Cucumber BDD (Given/When/Then functional tests)
+  - Gatling (performance/load testing)
+  - ISTQB-aligned test strategy
+
+================================================================================
+                        ARCHITECTURE
+================================================================================
+
+Pattern: Hybrid Microservices with Event-Driven Architecture
+
+CORE DOMAIN SERVICES (6):
+  - request-service        (ticket lifecycle — Spring Boot)
+  - document-ocr-service   (OCR processing — Python/Flask)
+  - ai-analysis-service    (classification & NLP — Python)
+  - llm-service            (reply generation with RAG — Python/FastAPI)
+  - response-workflow      (decision engine: auto vs. assisted)
+  - ingestion-service      (channel normalization)
+
+CROSS-CUTTING SERVICES (6):
+  - member-service         (user accounts, role sync with Keycloak)
+  - notification-service   (multi-channel alerts)
+  - ged-service            (document storage on MinIO)
+  - email-service          (outbound SMTP delivery)
+  - security               (Keycloak IAM)
+  - evaluation-service     (satisfaction surveys)
+
+KEY DESIGN DECISIONS
+--------------------
+  - Event-driven via Kafka with manual offset commits
+  - CQRS-like: PostgreSQL (current state) + Kafka (append-only event log)
+  - RAG pipeline: Processing → Retrieval → Generation → Validation
+  - Human-in-the-loop: confidence thresholds for auto vs. assisted routing
+  - Multi-OCR fallback chain with automatic language detection
+  - Blue-green deployment for n8n workflows
+  - Sub-workflow composition in n8n (DRY principle)
+
+================================================================================
+                      METHODOLOGY
+================================================================================
+
+  - Scrum/Agile with 2-week sprints (6 sprints over 11 weeks)
+  - 3 phases:
+      Phase 1: Intake & OCR Foundation
+      Phase 2: Multichannel & AI Analysis
+      Phase 3: Interface, Orchestration & Deployment
+  - Product Owner: Mr. Nizar Torche
+  - Scrum Master: Ms. Selmi Hedia
+  - Developer: Bouzidi Imed
+
+================================================================================
+                     COMPETENCIES DEMONSTRATED
+================================================================================
+
+  - Full-stack development (Java Spring Boot + React/TypeScript)
+  - Microservices architecture & event-driven design
+  - AI/ML integration (OCR, BERT classification, LLM with RAG)
+  - DevOps & cloud-native deployment (Docker, Kubernetes, Jenkins)
+  - Workflow automation (n8n orchestration)
+  - Security & compliance (Keycloak IAM, GDPR, AES-256 encryption)
+  - Performance engineering (Kafka, Redis, Gatling load testing)
+  - Multilingual system design (French, English, Arabic)
+  - Agile project management (Scrum, ISTQB testing)
+
+================================================================================
