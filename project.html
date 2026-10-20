@@ -65,7 +65,8 @@
                 <figure tabindex="0" role="button" aria-label="Open Gomrah OCR document processing"><img src="images/projects/gomrah/screenshots/web/OCR.png" alt="Gomrah OCR document processing" loading="lazy"></figure>
             </div>
             <div class="case-details"><div><span>Role</span><strong>Lead full-stack engineer</strong></div><div><span>Focus</span><strong>AI, workflow, microservices</strong></div><div><span>Stack</span><strong>Java · Spring Boot · React · Flutter · Python</strong></div><div><span>Outcome</span><strong>20 min manual work → ~3 sec automated</strong></div></div>
-            <p class="case-description">Gomrah normalizes email, WhatsApp, web forms, and API requests into a single workflow. OCR, multilingual classification, RAG-powered replies, and confidence-based human escalation help teams process requests faster without losing the human touch.</p>
+            <div class="case-tech"><span>Architecture</span><p>Spring Cloud microservices · API Gateway · Eureka service discovery · Apache Kafka event messaging</p><span>Delivery</span><p>Docker containers · Kubernetes / Minikube · Jenkins CI/CD · Keycloak IAM · Prometheus &amp; Grafana</p></div>
+            <p class="case-description">Gomrah normalizes email, WhatsApp, web forms, and API requests into a single workflow. An API Gateway provides a single secure entry point while Eureka handles service registration and discovery across the platform. Dockerized services are delivered through Jenkins CI/CD and deployed to Kubernetes. OCR, multilingual classification, RAG-powered replies, and confidence-based human escalation help teams process requests faster without losing the human touch.</p>
         </section>
 
         <section class="case-study shell" id="buyme">
@@ -78,8 +79,9 @@
                 <figure tabindex="0" role="button" aria-label="Open BuyMe AI customer segmentation"><img src="images/projects/e-commerce-ms/AI-Segmentation.png" alt="BuyMe AI customer segmentation" loading="lazy"></figure>
                 <figure tabindex="0" role="button" aria-label="Open BuyMe product management dashboard"><img src="images/projects/e-commerce-ms/admin manage products.png" alt="BuyMe product management dashboard" loading="lazy"></figure>
             </div>
-            <div class="case-details"><div><span>Role</span><strong>Full-stack developer & ML engineer</strong></div><div><span>Focus</span><strong>Commerce, services, personalization</strong></div><div><span>Stack</span><strong>Spring Boot · Angular · MongoDB · Docker</strong></div><div><span>Surfaces</span><strong>Customer web, mobile, admin</strong></div></div>
-            <p class="case-description">BuyMe is organized around independent services for catalog, orders, customers, and payments. AI-powered segmentation gives the experience a more personal feel while the architecture stays ready for growth.</p>
+            <div class="case-details"><div><span>Role</span><strong>Full-stack developer &amp; ML engineer</strong></div><div><span>Focus</span><strong>Commerce, services, personalization</strong></div><div><span>Stack</span><strong>Spring Boot · Angular · MongoDB · Redis</strong></div><div><span>Surfaces</span><strong>Customer web, mobile, admin</strong></div></div>
+            <div class="case-tech"><span>Architecture</span><p>Spring Boot microservices · API Gateway · Eureka service discovery · Kafka asynchronous events</p><span>Delivery</span><p>Docker images · Jenkins CI/CD · Kubernetes deployment · Git-based release workflow</p></div>
+            <p class="case-description">BuyMe is organized around independent services for catalog, orders, customers, inventory, and payments. The API Gateway centralizes routing and cross-cutting concerns, while Eureka enables resilient service discovery as services scale independently. Docker and Jenkins CI/CD keep builds and deployments repeatable, with Kubernetes-ready services for growth. AI-powered segmentation gives the experience a more personal feel while the architecture stays ready for growth.</p>
         </section>
 
         <section class="case-study shell" id="ala-dhemtk">
